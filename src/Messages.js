@@ -3,13 +3,11 @@ import React from "react";
 
 class Messages extends Component {
     render() {
+        const {messages} = this.props;
         return (
-          <div className="App">
-            <Messages
-              messages={this.state.messages}
-              currentMember={this.state.member}
-            />
-          </div>
+          <ul className="Messages-list">
+            {messages.map(m => this.renderMessage(m))}
+          </ul>
         );
       }
 
@@ -19,7 +17,9 @@ class Messages extends Component {
     const messageFromMe = member.id === currentMember.id;
     const className = messageFromMe ?
       "Messages-message currentMember" : "Messages-message";
+
     return (
+        <>
       <li className={className}>
         <span
           className="avatar"
@@ -32,6 +32,7 @@ class Messages extends Component {
           <div className="text">{text}</div>
         </div>
       </li>
+      </>
     );
   }
 }
